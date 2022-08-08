@@ -19,18 +19,12 @@ Por cierto, nos han dicho que son Agile y usan Scrum. Por eso quieren saber cuá
 Que hay prisa. 😝 Así que entra a Discord y cuéntanos. */
 
 function fixFiles(files) {
-  const uniqueFiles = [...new Set(files)];
-  const countOcurrences = {};
-
-  return files.map((file, i) => {
-    const index = uniqueFiles.findIndex((el) => el === file);
-    if (index !== -1) {
-      uniqueFiles.splice(index, 1);
-      countOcurrences[file] = 0;
-      return file;
-    } else {
-      return `${file}(${++countOcurrences[file]})`;
-    }
+  const occurenciesOf = {};
+  return files.map((file) => {
+    occurenciesOf[file] = (occurenciesOf[file] ?? 0) + 1;
+    const fileNo =
+      occurenciesOf[file] - 1 > 0 ? `(${occurenciesOf[file] - 1})` : "";
+    return `${file}${fileNo}`;
   });
 }
 
