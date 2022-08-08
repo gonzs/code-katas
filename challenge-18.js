@@ -29,8 +29,7 @@ function fixFiles(files) {
       countOcurrences[file] = 0;
       return file;
     } else {
-      countOcurrences[file]++;
-      return `${file}(${countOcurrences[file]})`;
+      return `${file}(${++countOcurrences[file]})`;
     }
   });
 }
